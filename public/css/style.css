@@ -1,0 +1,71 @@
+body
+{
+    background:magenta;
+}
+#parent 
+{
+    height:80%;
+    width:65%;
+    background:white;
+    border-radius: 0 80% 0 0;
+    margin-top: 10%;
+}
+#upper
+{
+    height:30%;
+    width:100%;
+}
+#lower
+{
+    height:60%;
+    width:100%;
+}
+#lower1
+{
+    height: 100%;
+    width:70%;
+    float:left;
+}
+#lower2
+{
+    float:left;
+    height: 100%;
+    width:30%;
+}
+h1
+{
+    font-size: 80px;
+    margin-left: 10%;
+    margin-top:15%;
+}
+p
+{
+    text-align:center;
+    padding-top:5%;
+    font-size:40px;
+    
+}
+a
+{
+    text-decoration:none;
+    color: brown;
+}
+.shell1
+{
+    height:150px;
+    width:150px;
+    float: left;
+    margin-left:30px;
+    margin-right:80px;
+    margin-top:10px;
+    background:pink;
+    border-radius:50%;
+}
+.shell2
+{
+    height:150px;
+    width:150px;
+    margin-left: 70px;
+    background:pink;
+    border-radius:50%;
+}
