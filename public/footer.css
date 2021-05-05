@@ -1,0 +1,79 @@
+                                * {
+                                margin: 0px;
+                                padding: 0px;
+                                box-sizing: border-box;
+                            }
+                            
+                            body {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                min-height: 208vh;
+                            }
+                            
+                            .container-fluid {
+                                background-color: black;
+                                font-family: "open sans-serif";
+                                padding-top: 20px;
+                                color: #fcfcfc;
+                                display: flex;
+                                flex-wrap: wrap;
+                                flex-direction: column;
+                            }
+                            
+                            .para {
+                                padding-bottom: 4vh;
+                            }
+                            
+                            .footer-bottom {
+                                display: flex;
+                                color: white;
+                                justify-content: center;
+                                align-content: center;
+                            }
+                            
+                            .social {
+                                list-style: none;
+                                margin-top: -10rem;
+                                display: flex;
+                                flex-wrap: wrap;
+                                flex-direction: column;
+                            }
+                            
+                            .social li a:hover i {
+                                background: white;
+                            }
+                            
+                            .social li a .fa {
+                                color: blue;
+                                font-size: 20px;
+                                margin-bottom: 1rem;
+                            }
+                            
+                            .quicklinks {
+                                /* display: flex;
+                            flex-wrap: wrap;
+                            flex-direction: column; */
+                            }
+                            
+                            .quicklinks ul li {
+                                list-style: none;
+                                font-size: 20px;
+                                text-decoration: none;
+                            }
+                            
+                            .quicklinks ul li a {
+                                display: flex;
+                                flex-wrap: wrap;
+                                text-decoration: none;
+                                color: white;
+                                float: right;
+                                padding: 8px;
+                            }
+                            
+                            @media only screen and (max-width: 760px) {
+                                .quicklinks ul {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    flex-direction: column;
+                                }
