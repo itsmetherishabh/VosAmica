@@ -89,22 +89,22 @@
     height: 100%;
     position: absolute;
     top: 64px;
-    background-image: url("luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg");
+    background-image: url("images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg");
     background-size: 100% 100%;
     animation: slider 8s linear infinite;
 }
 
 @keyframes slider {
     0% {
-        background-image: url("luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg");
+        background-image: url("images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg");
         background-size: 100% 100%;
     }
     35% {
-        background-image: url("Luxury-tourism-1024x761.jpg");
+        background-image: url("images/Luxury-tourism-1024x761.jpg");
         background-size: 100% 100%;
     }
     75% {
-        background-image: url("5ba68bcc319265e489663ff0f33c765f.jpg");
+        background-image: url("images/5ba68bcc319265e489663ff0f33c765f.jpg");
         background-size: 100% 100%;
     }
 }
