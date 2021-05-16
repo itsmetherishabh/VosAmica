@@ -14,7 +14,7 @@
 .heading {
     color: white;
     font-weight: bold;
-    animation: textanimation 1s ease-in-out;
+    animation: textanimation 3s ease-in-out;
     animation-iteration-count: infinite;
 }
 
