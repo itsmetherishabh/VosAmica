@@ -8,7 +8,6 @@
                                     display: flex;
                                     justify-content: center;
                                     align-items: center;
-                                    min-height: 208vh;
                                 }
                                 
                                 .container-fluid {
@@ -23,6 +22,7 @@
                                 
                                 .para {
                                     padding-bottom: 4vh;
+                                    font-size: 1.5rem;
                                 }
                                 
                                 .footer-bottom {
@@ -41,12 +41,12 @@
                                 }
                                 
                                 .social li a:hover i {
-                                    background: white;
+                                    color: navy;
                                 }
                                 
                                 .social li a .fa {
-                                    color: blue;
-                                    font-size: 20px;
+                                    color: cyan;
+                                    font-size: 40px;
                                     margin-bottom: 1rem;
                                 }
                                 
@@ -58,7 +58,7 @@
                                 
                                 .quicklinks ul li {
                                     list-style: none;
-                                    font-size: 20px;
+                                    font-size: 30px;
                                     text-decoration: none;
                                 }
                                 

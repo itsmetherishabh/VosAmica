@@ -23,6 +23,14 @@ app.get("/dummy", function(req, res) {
     res.render("dummy");
 });
 
+app.get("/footer", function(req, res) {
+    res.render("footer");
+});
+app.get("/header", function(req, res) {
+    res.render("header");
+});
+
+
 app.listen(3000, function() {
     console.log("Server started on port 3000");
 });
