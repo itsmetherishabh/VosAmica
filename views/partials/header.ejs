@@ -1,79 +1,89 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Bootstap css -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <!-- JQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- Proper Javascript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <!-- Bootstap Script -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <!-- Icons from FontAwesome -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js">  </script>
-        <!-- Font styles -->
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <link rel="stylesheet" href="css/style.css">
-        
-        <style>
-            .brand-title
-            {
-                border-bottom: 5px solid rgb(34, 48, 70);
-                padding: 0.6rem;
-                background-color:rgb(216, 201, 201);
-                text-align:center;
-            }
-        </style>
-    </head>
-    <body>
-        <section>
-            <div class="container-fluid">
-                <div class="row brand-title">
-                    <div class="col-lg-6 col col-md-6 col-12">
-                        <h1>HOTEL MASTER</h1>
-                    </div>
-                    <div class="col-lg-6 col col-md-6 col-12">
-                        <div class="input-group">
-                            <div class="form-outline">
-                              <input id="search-focus" type="search" id="form1" class="form-control" placeholder="Search..." autocomplete="off"/>
-                            </div>
-                            <button type="button" class="btn btn-success btn-md">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Proper Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Bootstap Script -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Icons from FontAwesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js">
+    </script>
+    <!-- Font styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/footer.css">
+
+    <style>
+        .brand-title {
+            border-bottom: 5px solid rgb(34, 48, 70);
+            padding: 0.6rem;
+            background-color: rgb(216, 201, 201);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="row brand-title">
+                <div class="col-lg-6 col col-md-6 col-12">
+                    <h1>HOTEL MASTER</h1>
+                </div>
+                <div class="col-lg-6 col col-md-6 col-12">
+                    <div class="input-group">
+                        <div class="form-outline">
+                            <input id="search-focus" type="search" id="form1" class="form-control" placeholder="Search..." autocomplete="off" />
+                        </div>
+                        <button type="button" class="btn btn-success btn-md">
                                 <i class="fas fa-search"></i>
                             </button>
-                        </div>
                     </div>
                 </div>
-                <div class="container">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            </div>
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse well" id="navbarTogglerDemo02">
-                          <ul class="navbar-nav ml-auto">
+                    <div class="collapse navbar-collapse well" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                              <a href="/" class="nav-link"><h3><i class="fa fa-fw fa-home"></i> Home</h3></a>
+                                <a href="/" class="nav-link">
+                                    <h3><i class="fa fa-fw fa-home"></i> Home</h3>
+                                </a>
                             </li>
                             <li class="nav-item">
-                              <a href="/rooms" class="nav-link"><h3>Rooms</h3></a>
+                                <a href="/rooms" class="nav-link">
+                                    <h3>Rooms</h3>
+                                </a>
                             </li>
                             <li class="nav-item">
-                              <a href="/blogs" class="nav-link"><h3>Blogs</h3></a>
+                                <a href="/blogs" class="nav-link">
+                                    <h3>Blogs</h3>
+                                </a>
                             </li>
                             <li class="nav-item">
-                              <a href="/about" class="nav-link"><h3>About Us</h3></a>
+                                <a href="/about" class="nav-link">
+                                    <h3>About Us</h3>
+                                </a>
                             </li>
                             <li class="nav-item">
-                              <a href="/register" class="nav-link"><h3><i class="fa fa-fw fa-user"></i> Register</h3></a>
+                                <a href="/register" class="nav-link">
+                                    <h3><i class="fa fa-fw fa-user"></i> Register</h3>
+                                </a>
                             </li>
-                          </ul>
-                        </div>
-                      </nav>
-                </div>
+                        </ul>
+                    </div>
+                </nav>
             </div>
-        </section>
-        
-   
+        </div>
+    </section>

@@ -21,7 +21,7 @@ app.get("/", function(req, res) {
 
 app.get("/dummy", function(req, res) {
     res.render("dummy");
-});
+})
 
 app.get("/footer", function(req, res) {
     res.render("footer");
@@ -29,6 +29,11 @@ app.get("/footer", function(req, res) {
 app.get("/header", function(req, res) {
     res.render("header");
 });
+
+app.get("/login", function(req, res) {
+    res.render("login");
+});
+
 
 
 app.listen(3000, function() {
