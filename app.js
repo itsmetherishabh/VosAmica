@@ -34,6 +34,10 @@ app.get("/login", function(req, res) {
     res.render("login");
 });
 
+app.get("/room", function(req, res) {
+    res.render("room");
+});
+
 
 
 app.listen(3000, function() {
