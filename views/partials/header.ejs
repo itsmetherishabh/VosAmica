@@ -20,33 +20,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rooms.css">
 
     <style>
         .brand-title {
             border-bottom: 5px solid rgb(34, 48, 70);
             padding: 0.6rem;
-            background-color: rgb(216, 201, 201);
+            background-color: #a9eee6;
             text-align: center;
         }
     </style>
 </head>
 
 <body>
-    <section>
+    <section style="background:#f9a1bc;">
         <div class="container-fluid">
             <div class="row brand-title">
                 <div class="col-lg-6 col col-md-6 col-12">
                     <h1>HOTEL MASTER</h1>
                 </div>
                 <div class="col-lg-6 col col-md-6 col-12">
-                    <div class="input-group">
+                    <form class="input-group" action="/search" method="get">
                         <div class="form-outline">
-                            <input id="search-focus" type="search" id="form1" class="form-control" placeholder="Search..." autocomplete="off" />
+                            <input type="search" id="search-focus" class="form-control" placeholder="Search..." autocomplete="on" />
                         </div>
                         <button type="button" class="btn btn-success btn-md">
-                                <i class="fas fa-search"></i>
-                            </button>
-                    </div>
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="container">
@@ -73,7 +74,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="/about" class="nav-link">
-                                    <h3>About Us</h3>
+                                    <h3><i class="fas fa-address-card"></i> About Us</h3>
                                 </a>
                             </li>
                             <li class="nav-item">

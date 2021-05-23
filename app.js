@@ -19,21 +19,17 @@ app.get("/", function(req, res) {
     res.render("index");
 });
 
-app.get("/dummy", function(req, res) {
-    res.render("dummy");
-})
-
-app.get("/footer", function(req, res) {
-    res.render("footer");
-});
-app.get("/header", function(req, res) {
-    res.render("header");
-});
-
 app.get("/login", function(req, res) {
     res.render("login");
 });
 
+app.get("/register", function(req, res) {
+    res.render("register");
+});
+
+app.get("/rooms", function(req, res) {
+    res.render("rooms");
+});
 app.get("/room", function(req, res) {
     res.render("room");
 });
