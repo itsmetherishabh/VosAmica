@@ -1,0 +1,67 @@
+    * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box
+    }
+    
+    .container-fluid {
+        background-color: rgba(0, 0, 0, 0.479);
+    }
+    
+    .sidebar {
+        height: 100%;
+        left: -15px;
+        top: -16px;
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.685);
+        width: 240px;
+    }
+    
+    .profile {
+        margin-top: 72px;
+        width: 15vh;
+        height: 15vh;
+        margin-left: 42px;
+    }
+    
+    .name {
+        margin-bottom: 30px;
+        margin-top: 20px;
+        margin-left: 42px;
+        color: white;
+    }
+    
+    .email {
+        margin-bottom: 30px;
+        margin-top: 20px;
+        margin-left: 15px;
+        color: white;
+    }
+    
+    .logout {
+        margin-bottom: 30px;
+        border-radius: 8px;
+        margin-left: 42px;
+    }
+    
+    .edit {
+        margin-right: 15px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        margin-left: 42px;
+    }
+    
+    .current1 {
+        margin-top: 60px;
+        margin-bottom: 30px;
+        margin-left: 50%;
+        color: white;
+    }
+    
+    .current2 {
+        margin-top: 60px;
+        margin-bottom: 30px;
+        margin-left: 50%;
+        border-radius: 8px;
+        padding: 2px;
+    }
