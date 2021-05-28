@@ -1,37 +1,57 @@
 <%- include('partials/header') %>
-
-    <div class="container-fluid row " style="height: 30rem;">
-        <div class="col-lg-2 col-md-4">
-            <div class="sidebar">
-                <div class="row" style="margin-top: 15px; margin-left: 15px;">
-                    <div><img class="profile" src="css/images/logooo.jpeg">
-                        <p class="name">RITK GARG</p>
-                        <p class="email">ritigarg@gmail.com</p>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 10px; margin-left: 15px;">
-                    <button class="edit btn-dark">EDIT PROFILE</button >
-                </div>
-                <div class="row" style="margin-top: 10px; margin-left: 15px;">
-                    <button class="logout btn-dark">LOG OUT</button>
-                </div>
-            </div>
+    <!-- <div class="row">
+        <div class="col-lg-3 col-md-4 col-12 p-5" style="border:0 solid; background-color:grey; height: 35rem;">
+            <img src="css/images/logooo.jpeg" alt="" style="width:7rem; margin-bottom: 3%;">
+            <h3 style="padding:20px 0 0 0;">Ritik garg</h3>
+            <h5 style="padding:20px 0 20px 0;">ritik@gmail.com</h5>
+            <h5 style="padding:20px 0 20px 0;">12345756445634</h5>
+            <button style="margin-right: 25px;" class="btn btn-primary">Edit profile</button>
+            <button class="btn btn-danger">Log out</button>
         </div>
-        <div class="col-lg-6 col-md-6 text-center" style="margin-top: 15vh; color:white;">
-            user gallery
+        <div class="col-lg-6 col-md-6" style="border:0 solid; background-color:pink;">
+            use gallery
         </div>
-
-
-        <div class="col-lg-4 col-md-2">
-            <div class="row" style="margin-top:50px;">
-                <h5 class="current1 ">CURRENT BOOKING</h5>
+        <div class="col-lg-3 col-md-2" style="border:0 solid;background-color:aliceblue;">
+            <div style="height:15rem; border:0 solid">
+                <h3>Current Booking</h3>
             </div>
+            <button class="btn btn-warning">Check Rooms</button>
+        </div>
+    </div> -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 p-5 pr-0">
+            <img src="css/images/user.png" alt="profile picture" style="width:7rem;" />
+            <h3><%=user.name%></h3>
+            <h5><%=user.email%></h5>
+            <h5><%=user.phone%></h5>
+            <button class="btn btn-dark btn-md">Edit Profile</button>
+            <form action="/upload-picture" method="post">
+                <input type="submit" class="btn btn-warning btn-md mt-1 mb-1" value="Upload Photo">
+            </form>
+            <form action="/logout" method="get">
+                <input type="submit" class="btn btn-danger btn-md" value="Logout">
+            </form>
+        </div>
+        <div class="col-lg-6 col-md-6">
             <div class="row">
-                <button class="current2 btn-dark">CURRENT ROOMS</button >
+                <div class="col-4 btn btn-info">
+                    All
+                </div>
+                <div class="col-4 btn btn-info">
+                    Public
+                </div>
+                <div class="col-4 btn btn-info">
+                    Private
                 </div>
             </div>
         </div>
-            
-
-
+        <div class="col-lg-3 col-md-2">
+            <div style="height:15rem;">
+                <h3>Current Booking</h3>
+            </div>
+            <button class="btn btn-warning btn-md">Check Rooms</button>
+        </div>
+    </div>
+</div>
     <%- include('partials/footer') %>

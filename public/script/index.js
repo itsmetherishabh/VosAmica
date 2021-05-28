@@ -29,3 +29,11 @@ window.addEventListener('keyup', (e) => {
 });
 
 // --------------------------------------------------------
+
+
+function changeCity()
+{
+  var name=document.getElementById('city').value;
+  console.log(name);
+  alert(name);
+}

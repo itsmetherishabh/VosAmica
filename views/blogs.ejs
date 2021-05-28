@@ -1,2 +1,14 @@
 <%- include('partials/header') %>
+<div class="container">
+    <% for(var i=0; i<5; i++){%>
+        <% if(i%2==0){ %>
+            <div class="small">
+                <img src="css\images\luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg" alt="a public picture">
+            </div> 
+        <%}else{%>
+            <div class="big">
+                <img src="css\images\Luxury-tourism-1024x761.jpg" alt="a public picture">
+            </div>
+    <%}}%>
+</div>
 <%- include('partials/footer') %>
