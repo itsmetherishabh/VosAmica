@@ -1,42 +1,40 @@
 <%- include('partials/header') %>
 
-<div class="container">
-    <h2 style="text-align:center;padding:1.5rem;color:rgb(0, 51, 71);">SEARCH HOTEL IN YOUR CITY</h2>
+    <div class="container">
+        <h2 style="text-align:center;padding:1.5rem;color:rgb(0, 51, 71);">SEARCH HOTEL IN YOUR CITY</h2>
+        <select class="dropdown btn-lg dropdown" onchange="changeCity()" id="city" style="color: #fff;background-color: #17a2b8; border-color: #17a2b8; font-size: x-large;">
+            <option style="color: #fff;background-color: black"value="delhi">select city</option>
+                <option style="color: #fff;background-color: black"value="delhi">delhi</option>
+                <option style="color: #fff;background-color: black"value="lucknow">lucknow</option>
+                <option style="color: #fff;background-color: black"value="Agra">Agra</option>
+                <option style="color: #fff;background-color: black"value="Manali">Manali</option>
+                <option style="color: #fff;background-color: black"value="Nainital">Nainital</option>
+           </select>
 
-    <div class="dropdown" style="padding:1.5rem;">
-        <button class="btn btn-info btn-lg dropdown-toggle" type="button" id="dropdownMenuButton city" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="changeCity()">
-          Select City
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Delhi</a>
-          <a class="dropdown-item" href="#">Lucknow</a>
-          <a class="dropdown-item" href="#">Agra</a>
-          <a class="dropdown-item" href="#">Manali</a>
-          <a class="dropdown-item" href="#">Nainital</a>
-        </div>
         <input type="date" class="btn btn-info btn-lg">
         <input type="date" class="btn btn-info btn-lg">
-      </div>
+    </div>
 
-      <div class="row">
+    <div class="row">
 
         <% for(var i=0; i<5; i++) { %>
 
             <div class="card col-lg-4 col-md-6">
-              <img class="card-img-top" src="css/images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Taj Hotel</h5>
-                <p class="card-text">
-                    Delhi, India. <br>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                </p>
-                <a href="/hotel_details" class="btn btn-primary">Know More...</a>
-              </div>
+                <img class="card-img-top" src="css/images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%=hotel.name%>
+                    </h5>
+                    <p class="card-text">
+                        Delhi, India. <br> Some quick example text to build on the card title and make up the bulk of the card's content.
+                    </p>
+                    <a href="/hotel_details" class="btn btn-primary">Know More...</a>
+                </div>
             </div>
-      
-        <% } %>
 
-        </div>
-</div>
+            <% } %>
 
-<%- include('partials/footer') %>
+    </div>
+    </div>
+
+    <%- include('partials/footer') %>

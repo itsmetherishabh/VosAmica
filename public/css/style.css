@@ -1,12 +1,11 @@
-html, body
-{
-    height:100%;
-    width:100%;
-    font-size:1rem;
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 1rem;
 }
 
-.navbar-brand
-{
+.navbar-brand {
     animation: textanimation 3s ease-in-out;
     animation-iteration-count: infinite;
 }
@@ -23,23 +22,22 @@ html, body
     }
 }
 
-.search-box
-{
-    height:10%;
+.search-box {
+    height: 10%;
     display: flex;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
 }
 
-.brand-body
-{
+.brand-body {
     height: 90%;
-    display:flex;
+    display: flex;
     border: 1px solid;
     /* background-image: url("images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg"); */
     background-size: 100% 100%;
     /* animation: slider 20s linear infinite; */
 }
+
 @keyframes slider {
     0% {
         background-image: url("images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg");
@@ -54,31 +52,26 @@ html, body
         background-size: 100% 100%;
     }
 }
-.brand-body > div
-{
+
+.brand-body>div {
     margin-top: 35%;
     margin-left: auto;
     margin-right: 10%;
 }
 
 @media only screen and (max-width: 1000px) {
-    .brand-title
-    {
-        padding:3%;
-
+    .brand-title {
+        padding: 3%;
     }
-    .brand-body 
-    {
+    .brand-body {
         height: 40%;
     }
-    .brand-body > div
-    {
+    .brand-body>div {
         margin-top: 45%;
         margin-left: auto;
         margin-right: 10%;
     }
-    .search-box
-    {
+    .search-box {
         height: 5%;
     }
 }

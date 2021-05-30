@@ -57,6 +57,7 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.set("useCreateIndex", true);
 
 const User = require('./models/User');
+const Hotel = require('./models/Hotel');
 
 var Storage = multer.diskStorage({
     destination: "./public/profilePic",
@@ -114,8 +115,8 @@ app.get("/dashboard", ensureAuthenticated, function(req, res) {
 });
 
 app.get("/login", function(req, res) {
-    if(!req.user)
-        res.render("login",{
+    if (!req.user)
+        res.render("login", {
             title: "Login",
             user: req.user
         });
@@ -130,82 +131,81 @@ app.get("/register", function(req, res) {
     });
 });
 
-app.get("/logout",function(req,res){
+app.get("/logout", function(req, res) {
     req.logout();
-    req.flash('success_msg','You are logged out');
+    req.flash('success_msg', 'You are logged out');
     res.redirect("/login");
-  });
+});
+app.get("/hotel", function(req, res) {
+    res.render("hotel");
+});
+
+
 
 
 //-------------------------post requests-------------------------
 
-app.post("/register",[
-    check('email',"Invalid email").trim().isEmail(),
-    check('email').custom((value,{req}) => {
-      return User.findOne({email : req.body.email}).then(user => {
-        if (user) {
-          return Promise.reject('This E-mail already in use!');
-        }
-      });
-    }),
-    check('name',"Invalid Name").trim().isString(),
-    check('phone',"Invalid contact number").trim().isLength({min:10}),
-    check('phone',"Invalid contact number").trim().isLength({max:10}),
-    check('password',"Password must be of at least 8 characters ").trim().isLength({min:8}),
-    check('cpassword').custom((value,{req})=>{
-      if(value!=req.body.password)
-      {
-        throw new Error("Confirm password does not match");
-      }
-      return true;
-    })
-  ], async function(req, res) {
-    const errors = validationResult(req);
-    if(errors.isEmpty())
-    {
-      User.findOne({email : req.body.email})
-      .then(user =>
-        {
-            if(user){
-                //user exists
-                console.log({msg : "User with this email already exists!"});
-                res.render("signup",{
-                  error:errors,
-                  user:user
-                });
-            }
-            else{
-                var today=new Date();
-                var day=dateFormat(today, "dddd, mmmm dS, yyyy, h:MM:ss TT");
-                const user1 = new User({
-                  name: req.body.name,
-                  email: req.body.email,
-                //   emailToken: crypto.randomBytes(64).toString('hex'),
-                  password:req.body.password,
-                  phone:req.body.phone,
-                  time:day
-                });
-                //hashing the password
-                bcrypt.genSalt(10,(err,salt)=>
-                bcrypt.hash(user1.password,salt, (err,hash)=>{
-                  if(err) throw err;
-                  //set password to hash
-                  user1.password=hash;
-                  //save farmer
-                  user1.save()
-                  .then(userl => {
-                    req.flash('success_msg','You are now registered, you can log in from here.');
-                    res.redirect("/login");
-                  })
-                  .catch(err => console.log(err));
-                }));
+app.post("/register", [
+    check('email', "Invalid email").trim().isEmail(),
+    check('email').custom((value, { req }) => {
+        return User.findOne({ email: req.body.email }).then(user => {
+            if (user) {
+                return Promise.reject('This E-mail already in use!');
             }
         });
-    }
-    else
-    {
+    }),
+    check('name', "Invalid Name").trim().isString(),
+    check('phone', "Invalid contact number").trim().isLength({ min: 10 }),
+    check('phone', "Invalid contact number").trim().isLength({ max: 10 }),
+    check('password', "Password must be of at least 8 characters ").trim().isLength({ min: 8 }),
+    check('cpassword').custom((value, { req }) => {
+        if (value != req.body.password) {
+            throw new Error("Confirm password does not match");
+        }
+        return true;
+    })
+], async function(req, res) {
+    const errors = validationResult(req);
+    if (errors.isEmpty()) {
+        User.findOne({ email: req.body.email })
+            .then(user => {
+                if (user) {
+                    //user exists
+                    console.log({ msg: "User with this email already exists!" });
+                    res.render("signup", {
+                        error: errors,
+                        user: user
+                    });
+                } else {
+                    var today = new Date();
+                    var day = dateFormat(today, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+                    const user1 = new User({
+                        name: req.body.name,
+                        email: req.body.email,
+                        //   emailToken: crypto.randomBytes(64).toString('hex'),
+                        password: req.body.password,
+                        phone: req.body.phone,
+                        time: day
+                    });
+                    //hashing the password
+                    bcrypt.genSalt(10, (err, salt) =>
+                        bcrypt.hash(user1.password, salt, (err, hash) => {
+                            if (err) throw err;
+                            //set password to hash
+                            user1.password = hash;
+                            //save farmer
+                            user1.save()
+                                .then(userl => {
+                                    req.flash('success_msg', 'You are now registered, you can log in from here.');
+                                    res.redirect("/login");
+                                })
+                                .catch(err => console.log(err));
+                        }));
+                }
+            });
+    } else {
         const user = matchedData(req);
-        res.render("register",{
+        res.render("register", {
             error: errors.mapped(),
             title: "Register Yourself",
             user: user
@@ -213,12 +213,26 @@ app.post("/register",[
     }
 });
 
-app.post('/login',function(req, res, next){
-    passport.authenticate('local',{
-        successRedirect:'/dashboard',
-        failureRedirect:'/login',
-        failureFlash:true
-      })(req,res,next);
+app.post('/login', function(req, res, next) {
+    passport.authenticate('local', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/login',
+        failureFlash: true
+    })(req, res, next);
+});
+
+app.post('/hotel', function(req, res) {
+    const hotel = new Hotel({
+        description: req.body.description,
+        name: req.body.name,
+        locations: req.body.locations
+    });
+    hotel.save();
+    res.render("rooms", {
+        title: "Look for Rooms",
+        user: req.user,
+        hotel: hotel
+    });
 });
 
 //-------------------------listen at port 3000-------------------------
