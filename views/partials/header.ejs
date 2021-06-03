@@ -9,11 +9,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstap css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Proper Javascript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Fancybox JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
     <!-- Bootstap Script -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <!-- Icons from FontAwesome -->
@@ -44,12 +47,12 @@
                         <h1>HOTEL MASTER</h1>
                     </a>
                 </div>
-                <div class="col-lg-6 col col-md-6 col-12 m-auto ">
-                    <form class="input-group " action="/search" method="get">
-                        <div class="form-outline">
+                <div class="col-lg-6 col col-md-6 col-12 m-auto">
+                    <form class="input-group" action="/search" method="get">
+                        <div class="form-outline ml-auto">
                             <input type="search" id="search-focus" class="form-control" placeholder="Search..." autocomplete="on" />
                         </div>
-                        <button type="button" class="btn btn-success btn-md">
+                        <button type="button" class="btn btn-success btn-md mr-auto">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -57,36 +60,44 @@
             </div>
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <button type="button" class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                     <div class="collapse navbar-collapse well" id="navbarTogglerDemo02">
-                        <ul class="navbar-nav m-auto" style="display:flex; justify-content:space-between;">
-                            <li class="nav-item ">
+                        <ul class="navbar-nav m-auto">
+                            <li class="nav-item mr-4">
                                 <a href="/" class="nav-link">
                                     <h3><i class="fa fa-fw fa-home"></i> Home</h3>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item mr-4">
                                 <a href="/rooms" class="nav-link">
                                     <h3>Rooms</h3>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item mr-4">
                                 <a href="/blogs" class="nav-link">
                                     <h3>Blogs</h3>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item mr-4">
                                 <a href="/about-us" class="nav-link">
                                     <h3><i class="fas fa-address-card"></i> About Us</h3>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <%if(!user){%>
+                            <li class="nav-item mr-4">
                                 <a href="/register" class="nav-link">
                                     <h3><i class="fa fa-fw fa-user"></i> Register</h3>
                                 </a>
                             </li>
+                            <%}else{%>
+                            <li class="nav-item mr-4">
+                                <a href="/dashboard" class="nav-link">
+                                    <h3><i class="fa fa-fw fa-user"></i> Dashboard</h3>
+                                </a>
+                            </li>
+                            <%}%>
                         </ul>
                     </div>
                 </nav>

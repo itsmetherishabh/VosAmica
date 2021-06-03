@@ -70,6 +70,7 @@ var profilePic = multer({
     storage: Storage
 }).single('file');
 
+var city="Delhi";
 //-------------------------get requests-------------------------
 
 app.get("/", function(req, res) {
@@ -80,9 +81,19 @@ app.get("/", function(req, res) {
 });
 
 app.get("/rooms", function(req, res) {
-    res.render("rooms", {
-        title: "Look for Rooms",
-        user: req.user
+    Hotel.find({locations:city}, function(err,hotels){
+        if(err)
+        {
+            res.redirect("/");
+        }
+        else
+        {
+            res.render("rooms", {
+                title: "Look for Rooms",
+                user: req.user,
+                hotel:hotels
+            });
+        }
     });
 });
 
@@ -228,11 +239,12 @@ app.post('/hotel', function(req, res) {
         locations: req.body.locations
     });
     hotel.save();
-    res.render("rooms", {
-        title: "Look for Rooms",
-        user: req.user,
-        hotel: hotel
-    });
+    res.redirect("/rooms");
+});
+
+app.post("/check",function(req, res){
+    city=req.body.city;
+    res.redirect("/rooms");
 });
 
 //-------------------------listen at port 3000-------------------------
