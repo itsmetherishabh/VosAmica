@@ -10,6 +10,23 @@ body {
     animation-iteration-count: infinite;
 }
 
+.nav-link > h4:hover {
+    border-radius:20px;
+    background-color:rgba(71, 71, 121,0.5);
+}
+
+a
+{
+    text-decoration: none;
+    color: #fff;
+}
+a:hover
+{
+    filter: brightness(90%);
+    color: grey;
+    text-decoration: none;
+}
+
 @keyframes textanimation {
     0% {
         letter-spacing: 1px;

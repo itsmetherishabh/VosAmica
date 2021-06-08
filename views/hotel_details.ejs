@@ -1,2 +1,25 @@
 <%- include('partials/header') %>
+<div class="container">
+    <div class="row m-auto pt-3 pb-3">
+        <div class="item col-lg-6 col-md-6 col-12 p-0">
+            <img src="css/images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg" alt="hotel image" width="100%" height="100%">
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+            <h1><%=details.name%></h1>
+            <h1><%=details.locations%></h1>
+            <h1><%=details.description%></h1>
+                <form action="/book" method="post">
+                    <button type="submit" name="roomtype" value="superdeluxe" class="btn btn-warning ">
+                        SUPER DELUXE
+                    </button>
+                    <button type="submit" name="roomtype" value="deluxe" class="btn btn-warning ">
+                        DELUXE
+                    </button>
+                    <button type="submit" name="roomtype" value="executive" class="btn btn-warning ">
+                        Executive
+                    </button>
+                </form>
+        </div>
+    </div>
+</div>
 <%- include('partials/footer') %>

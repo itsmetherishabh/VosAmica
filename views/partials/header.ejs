@@ -30,16 +30,14 @@
 
     <style>
         .brand-title {
-            border-bottom: 5px solid rgb(34, 48, 70);
             padding: 0.6rem;
-            background-color: #a9eee6;
             text-align: center;
         }
     </style>
 </head>
 
 <body>
-    <section style="background:#f9a1bc;">
+    <section style="background:#a1aef9;border-bottom: 5px solid rgb(34, 48, 70);">
         <div class="container-fluid">
             <div class="row brand-title">
                 <div class="col-lg-6 col col-md-6 col-12">
@@ -67,34 +65,34 @@
                         <ul class="navbar-nav m-auto">
                             <li class="nav-item mr-4">
                                 <a href="/" class="nav-link">
-                                    <h3><i class="fa fa-fw fa-home"></i> Home</h3>
+                                    <h4 class="p-2"><i class="fa fa-fw fa-home"></i> Home</h4>
                                 </a>
                             </li>
                             <li class="nav-item mr-4">
                                 <a href="/rooms" class="nav-link">
-                                    <h3>Rooms</h3>
+                                    <h4 class="p-2">Rooms</h4>
                                 </a>
                             </li>
                             <li class="nav-item mr-4">
                                 <a href="/blogs" class="nav-link">
-                                    <h3>Blogs</h3>
+                                    <h4 class="p-2">Blogs</h4>
                                 </a>
                             </li>
                             <li class="nav-item mr-4">
                                 <a href="/about-us" class="nav-link">
-                                    <h3><i class="fas fa-address-card"></i> About Us</h3>
+                                    <h4 class="p-2"><i class="fas fa-address-card"></i> About Us</h4>
                                 </a>
                             </li>
                             <%if(!user){%>
                             <li class="nav-item mr-4">
                                 <a href="/register" class="nav-link">
-                                    <h3><i class="fa fa-fw fa-user"></i> Register</h3>
+                                    <h4 class="p-2"><i class="fa fa-fw fa-user"></i> Register</h4>
                                 </a>
                             </li>
                             <%}else{%>
                             <li class="nav-item mr-4">
                                 <a href="/dashboard" class="nav-link">
-                                    <h3><i class="fa fa-fw fa-user"></i> Dashboard</h3>
+                                    <h4 class="p-2"><i class="fa fa-fw fa-user"></i> Dashboard</h4>
                                 </a>
                             </li>
                             <%}%>

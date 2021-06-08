@@ -15,9 +15,9 @@
                         <option value="Jaipur">Jaipur</option>
                         <option value="Agra">Agra</option>
                     </select>
-                    <input type="date" class="btn btn-info btn-lg">
-                    <input type="date" class="btn btn-info btn-lg">
-                    <input type="submit" name="submit" value="submit">
+                    <input type="date" name="startDate" class="btn btn-info btn-lg" required="true">
+                    <input type="date" name="endDate" class="btn btn-info btn-lg" required="true">
+                    <input type="submit" name="submit" class="btn btn-info btn-lg" value="Search">
                 </form>
             </div>
         </div>
@@ -32,7 +32,9 @@
                     <p class="card-text">
                         <b id="dname"><%=hotel[i].locations%></b>, India. <br> Some quick example text to build on the card title and make up the bulk of the card's content.
                     </p>
-                    <a href="/hotel_details" class="btn btn-primary">Know More...</a>
+                    <form action="/hotel_details" method="post">
+                        <button value=<%=hotel[i]._id%> name="hotelId" type="submit" class="btn btn-primary" >Know More...</button>
+                    </form>
                 </div>
             </div>
             <% } %>

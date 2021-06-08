@@ -1,6 +1,32 @@
-<form action="/hotel" method="post">
-    <input type="text" name="name" placeholder="name">
-    <input type="text" name="description" placeholder="description">
-    <input type="text" name="locations" placeholder="locations">
-    <input type="submit" name="submit">
-</form>
+<%- include('partials/header') %>
+<div class="row">
+  <div class="col-lg-5 col-md-6 col-10 mt-4" style="margin:auto; color:rgb(5, 5, 5);padding:2rem  ; background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;"  >
+  <h2 style="text-align:center;color:aliceblue;">
+    REGISTER YOUR HOTEL HERE
+  </h2>
+  <form action="/hotel" method="post" class="mt-4 p-3">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter hotel name" required="true">
+        </div>
+        
+        <div class="form-group">
+          <label for="description">Hotel Description</label>
+          <input type="text" class="form-control" id="description" name="description" placeholder="Enter description" required="true">
+          <small class="form-text text-muted">Description has to be of at least 100 characters.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" class="form-control" id="location" name="locations" placeholder="Enter the location" required="true">
+        </div>
+        <input type="date" name="startDate" class="btn btn-info btn-lg" required="true">
+        <input type="date" name="endDate" class="btn btn-info btn-lg" required="true">
+                    
+
+      <button type="submit" class="btn btn-warning" name="submit">Submit</button>
+      <p>already registered? <a href="/login">LOG IN</a>
+  </form>
+  </div>
+</div>
+<%- include('partials/footer') %>
