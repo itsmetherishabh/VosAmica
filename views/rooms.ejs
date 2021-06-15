@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row m-auto">
             <div class="m-auto">
-                <form action="/check" method="post">
+                <form action="/searchHotels" method="post">
                     <select class="dropdown btn-lg dropdown" id="city" name="city" style="color: #fff;background-color: #17a2b8; border-color:#17a2b8; font-size: x-large;">
                         <option value="Delhi">Delhi</option>
                         <option value="Lucknow">Lucknow</option>
@@ -15,8 +15,8 @@
                         <option value="Jaipur">Jaipur</option>
                         <option value="Agra">Agra</option>
                     </select>
-                    <input type="date" name="startDate"  class="btn btn-info btn-lg" required="true">
-                    <input type="date" name="endDate" class="btn btn-info btn-lg" required="true">
+                    <input type="date" name="checkIn" class="btn btn-info btn-lg dateStart" id="chk" onchange="check()">
+                    <input type="date" name="checkOut" class="btn btn-info btn-lg dateEnd">
                     <input type="submit" name="submit" class="btn btn-info btn-lg" value="Search">
                 </form>
             </div>
