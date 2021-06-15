@@ -25,10 +25,44 @@
             <h3><%=user.name%></h3>
             <h5><%=user.email%></h5>
             <h5><%=user.phone%></h5>
-            <button class="btn btn-dark btn-md">Edit Profile</button>
-            <form action="/upload-picture" method="post">
-                <input type="submit" class="btn btn-warning btn-md mt-1 mb-1" value="Upload Photo">
-            </form>
+            <button class="btn btn-dark btn-md" id="myBtn1">Edit Profile</button>
+            <!-- The Modal -->
+            <div id="myModal1" class="modal">
+            <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="col-lg-5 col-md-6 col-10 mt-4" style="margin:auto; color:rgb(5, 5, 5);padding:2rem  ; background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;"  ><form>
+                        <lable>Edit Name</lable>
+                        <input type="text"  value="" placeholder="Enter Name" ><br><br>
+                        Edit Number <input type="text"  value="" placeholder="Enter Number"><br><br>
+                        <input type="file" ><br><br>
+                        <button type="button"class="btn btn-warning">Submit</button>
+                        </form></div>
+                    
+                </div>
+            </div>
+
+            <!-- The Modal -->
+            <div id="myModal2" class="modal">
+                <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div class="col-lg-5 col-md-6 col-10 mt-4" style="margin:auto; color:rgb(5, 5, 5);padding:2rem  ; background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;"  ><form>
+                            <input type="file" ><br><br>
+                            <input type="text" placeholder="add caption"><br><br>
+                            <button type="button">submit</button>
+                      
+                      
+                        </form></div>
+                       
+                        
+        
+                    </div>
+                </div>
+
+            
+            <input type="submit" class="btn btn-warning btn-md mt-1 mb-1" id="myBtn2" value="Upload Photo">
+            
             <form action="/logout" method="get">
                 <input type="submit" class="btn btn-danger btn-md" value="Logout">
             </form>
