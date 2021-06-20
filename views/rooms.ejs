@@ -7,7 +7,7 @@
         <div class="row m-auto">
             <div class="m-auto">
                 <form action="/searchHotels" method="post">
-                    <select class="dropdown btn-lg dropdown" id="city" name="city" style="color: #fff;background-color: #17a2b8; border-color:#17a2b8; font-size: x-large;">
+                    <select class="dropdown btn-lg dropdown" id="city" name="city" style="color: #fff;background-color: #17a2b8; border-color:#17a2b8;">
                         <option value="Delhi">Delhi</option>
                         <option value="Lucknow">Lucknow</option>
                         <option value="Goa">Goa</option>
@@ -15,8 +15,8 @@
                         <option value="Jaipur">Jaipur</option>
                         <option value="Agra">Agra</option>
                     </select>
-                    <input type="date" name="checkIn" class="btn btn-info btn-lg dateStart" id="chk" onchange="check()">
-                    <input type="date" name="checkOut" class="btn btn-info btn-lg dateEnd">
+                    <input type="date" name="checkIn" class=" btn btn-info btn-lg dateStart" id="chk" onchange="check()" required="true">
+                    <input type="date" name="checkOut" class="btn btn-info btn-lg dateEnd" required="true">
                     <input type="submit" name="submit" class="btn btn-info btn-lg" value="Search">
                 </form>
             </div>
@@ -24,7 +24,7 @@
         <div class="row mb-4">
             <% for(var i=0; i<hotel.length; i++) { %>
             <div class="col-lg-3 col-md-4 col-12 card p-0 mt-4">
-                <img class="card-img-top" src="css/images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg" alt="Card image cap">
+                <img class="card-img-top" src="css/images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg" alt="Hotel Image">
                 <div class="card-body">
                     <h5 class="card-title">
                         <%=hotel[i].name%>

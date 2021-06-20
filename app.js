@@ -161,7 +161,7 @@ app.get("/hotel", function(req, res) {
     });
 });
 
-app.get("/book_now", function(req, res) {
+app.get("/book_now", ensureAuthenticated, function(req, res) {
     res.render("book_now",{
         title:"Book this Room",
         user: req.user,
@@ -254,13 +254,17 @@ app.post('/hotel', function(req, res) {
     const hotel = new Hotel({
         description: req.body.description,
         name: req.body.name,
-        locations: req.body.locations
+        locations: req.body.locations,
+        sdeluxe: req.body.sdeluxe,
+        deluxe: req.body.deluxe,
+        executive: req.body.executive
     });
     hotel.save();
     const booking = new Booking({
         roomId: hotel._id,
         checkIn: "",
-        checkOut: ""
+        checkOut: "",
+        roomtype: ""
     });
     booking.save();
     res.redirect("/rooms");
@@ -296,18 +300,18 @@ app.post("/hotel_details",function(req, res){
     });
 });
 
-
-app.post("/checkAvailability", function(req, res) {
+app.post("/checkAvailability", ensureAuthenticated, function(req, res) {
     const roomtype=req.body.roomtype;
     const hotelId=req.body.hotelId;
     Booking.find({_id:hotelId},function(err,doc){
         if(err)
         {
-            res.redirect("/");
+            console.log(err);
         }
         else
         {
-            console.log(req.user.name," booked a ",roomtype," room for dates :",dateList);
+            // console.log(doc);
+            console.log(req.user.name," is trying to book a ",roomtype," room for dates :",dateList);
             res.redirect("/book_now");
         }
     });
@@ -315,22 +319,40 @@ app.post("/checkAvailability", function(req, res) {
 
 app.post("/book", function(req, res) {
     const roomId=req.body.roomId;
+    var today = new Date();
     Booking.findOne({_id:roomId},function(err, room){
         if(err)
         {
             console.log(err);
         }
-        else if(room.checkIn==null)
+        console.log(today);
+        if(room.checkOut!=null && (room.checkOut.getDate()<=today.getDate())&&(room.checkOut.getMonth()==today.getMonth()))
         {
-            Booking.updateOne({_id:roomId},{ $set: { checkIn: dateList[0] ,checkOut: dateList[1]}},  function(err,doc){
+            room.checkIn="";
+            room.checkOut="";
+        }
+        var l=dateList.length;
+        function avail(day,mon)
+        {
+            var stat=false;
+            for(var i=0;i<l-1;i++)
+            {
+                if(dateList[i].getDate()==day&&dateList[i].getMonth()==mon)
+                    stat=true;
+            }
+            return stat;
+        }
+        if((room.checkIn==null) || !avail(room.checkIn.getDate(),room.checkIn.getMonth()))
+        {
+            Booking.updateOne({_id:roomId},{ $set: { checkIn: dateList[0] ,checkOut: dateList[l-1]}},  function(err,doc){
                 if(err)
                 {
                     console.log(err);
                 }
                 else
                 {
-                    console.log(doc);
-                    res.redirect("/book_now");
+                    console.log("Room Booked",doc);
+                    res.redirect("/dashboard");
                 }
             });
         }

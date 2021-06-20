@@ -31,13 +31,23 @@
             <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <div class="col-lg-5 col-md-6 col-10 mt-4" style="margin:auto; color:rgb(5, 5, 5);padding:2rem  ; background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;"  ><form>
-                        <lable>Edit Name</lable>
-                        <input type="text"  value="" placeholder="Enter Name" ><br><br>
-                        Edit Number <input type="text"  value="" placeholder="Enter Number"><br><br>
-                        <input type="file" ><br><br>
-                        <button type="button"class="btn btn-warning">Submit</button>
-                        </form></div>
+                    <div class="col-lg-5 col-md-6 col-10 mt-4" style="margin:auto; color:rgb(5, 5, 5);padding:2rem  ; background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;">
+                        <form method="post" action="/editProfile" >
+                            <div class="form-group">
+                              <label for="name">Name</label>
+                              <input type="text" class="form-control" id="name" name="name" placeholder="Update your name" required="true" value=<%=user.name%>>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Update your phone number" required="true" value=<%=user.phone%>>
+                            </div>
+                            <div class="form-group">
+                                <label for="photo">Photo</label>
+                                <input type="file" class="btn form-control" id="photo" name="photo" placeholder="Update your photo" required="true">
+                              </div>
+                            <button type="submit" class="btn btn-warning">Submit</button>
+                        </form>
+                    </div>
                     
                 </div>
             </div>
@@ -45,21 +55,23 @@
             <!-- The Modal -->
             <div id="myModal2" class="modal">
                 <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div class="col-lg-5 col-md-6 col-10 mt-4" style="margin:auto; color:rgb(5, 5, 5);padding:2rem  ; background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;"  ><form>
-                            <input type="file" ><br><br>
-                            <input type="text" placeholder="add caption"><br><br>
-                            <button type="button">submit</button>
-                      
-                      
-                        </form></div>
-                       
-                        
-        
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="col-9 p-5 m-auto" style="color:rgb(5, 5, 5); background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;" >
+                        <form method="post" action="/uploadPhoto" >
+                            <div class="form-group">
+                              <label for="photo">Photo</label>
+                              <input type="file" class="btn btn-light ml-5" id="photo" name="photo" placeholder="enter your photo" required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="caption">Caption</label>
+                                <input type="text" class="form-control" id="caption" name="caption" placeholder="Enter caption" required="true">
+                            </div>
+                            <button type="submit" class="btn btn-warning">Submit</button>
+                        </form> 
                     </div>
                 </div>
-
+            </div>
             
             <input type="submit" class="btn btn-warning btn-md mt-1 mb-1" id="myBtn2" value="Upload Photo">
             
@@ -72,7 +84,7 @@
                 <div class="col-5 ml-auto mt-1 btn btn-info">
                     All
                 </div>
-                <div class="col-5 ml-auto mt-1 btn btn-info">
+                <div class="col-5 mr-auto mt-1 btn btn-info">
                     Public
                 </div>
             </div>
