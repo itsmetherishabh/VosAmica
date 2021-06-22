@@ -3,11 +3,7 @@ body {
     height: 100%;
     width: 100%;
     font-size: 1rem;
-}
-
-.navbar-brand {
-    animation: textanimation 3s ease-in-out;
-    animation-iteration-count: infinite;
+    font-family: 'Oswald', sans-serif;
 }
 
 .nav-link > h4:hover {
@@ -47,7 +43,7 @@ a:hover
 }
 
 .brand-body {
-    height: 90%;
+    height: 95%;
     display: flex;
     border: 1px solid;
     /* background-image: url("images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg"); */
@@ -70,23 +66,10 @@ a:hover
     }
 }
 
-.brand-body>div {
-    margin-top: 35%;
-    margin-left: auto;
-    margin-right: 10%;
-}
 
 @media only screen and (max-width: 1000px) {
-    .brand-title {
-        padding: 3%;
-    }
     .brand-body {
         height: 40%;
-    }
-    .brand-body>div {
-        margin-top: 45%;
-        margin-left: auto;
-        margin-right: 10%;
     }
     .search-box {
         height: 5%;

@@ -5,18 +5,15 @@
             <img src="css/images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg" alt="hotel image" width="100%" height="100%">
         </div>
         <div class="col-lg-6 col-md-6 col-12">
-            <h1><%=details.name%></h1>
+            <h1><i><%=details.name%></i></h1>
             <h1><%=details.locations%></h1>
             <h1><%=details.description%></h1>
-                <form action="/book" method="post">
-                    <button type="submit" name="roomtype" value="superdeluxe" class="btn btn-warning ">
-                        SUPER DELUXE
-                    </button>
-                    <button type="submit" name="roomtype" value="deluxe" class="btn btn-warning ">
-                        DELUXE
-                    </button>
-                    <button type="submit" name="roomtype" value="executive" class="btn btn-warning ">
-                        Executive
+                <form action="/checkAvailability" method="post">
+                    <input type="radio" value="Super Deluxe" name="roomtype">Super Deluxe
+                    <input type="radio" value="Deluxe" name="roomtype">Deluxe
+                    <input type="radio" value="Executive" name="roomtype">Executive
+                    <button type="submit" value=<%=details._id%> name="hotelId" class="btn btn-warning ">
+                        Check
                     </button>
                 </form>
         </div>

@@ -1,5 +1,5 @@
 <%- include('partials/header') %>
 <form action="/book" method="post">
-    <button type="submit" class="btn btn-primary">Book</button>
+    <button type="submit" value=<%=details._id%> name="roomId" class="btn btn-primary">Book</button>
 </form>
 <%- include('partials/footer') %>

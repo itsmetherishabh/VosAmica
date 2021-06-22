@@ -31,6 +31,49 @@ window.addEventListener('keyup', (e) => {
 // --------------------------------------------------------
 
 
+function changeCity()
+{
+  var name=document.getElementById('city').value;
+  console.log(name);
+  alert(name);
+}
+
+// Dates restrictions
+
+// Date objects are created wiyh the new date() constructor./
+
+function check()
+{
+  var chk=new Date(document.getElementById('chk').value);
+  var month = chk.getMonth() +1;
+			  var day = chk.getDate() +1;
+			  var year = chk.getFullYear() ;
+			  if(month < 10)
+			  month='0' + month.toString();
+			  if(day < 10)
+			  day = '0' + day.toString();
+			  maxDate = year + '-' + month + '-' + day;
+  $('.dateEnd').attr('min', maxDate);
+}
+
+$(document).ready(function(){
+
+        var dtToday = new Date();
+			  var month = dtToday.getMonth() +1;
+			  var day = dtToday.getDate();
+			  var year = dtToday.getFullYear() ;
+			  if(month < 10)
+			  month='0' + month.toString();
+			  if(day < 10)
+			  day = '0' + day.toString();
+			  var maxDate = year + '-' + month + '-' + day;
+        $('.dateStart').attr('min', maxDate);
+        $('.dateEnd').attr('min', maxDate);
+
+
+});
+
+// MODAL
 
 var modal1 = document.getElementById("myModal1");
 var modal2 = document.getElementById("myModal2");

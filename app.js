@@ -58,7 +58,7 @@ mongoose.set("useCreateIndex", true);
 
 const User = require('./models/User');
 const Hotel = require('./models/Hotel');
-const Availability = require('./models/Availability');
+const Booking = require('./models/booking');
 
 var Storage = multer.diskStorage({
     destination: "./public/profilePic",
@@ -91,22 +91,12 @@ app.get("/rooms", function(req, res) {
         }
         else
         {
-            Availability.find({dates:"2021-06-18T00:00:00.000Z"},function(err,hotelList){
-                if(err)
-                {
-                    console.log(err);
-                }
-                else
-                {
-                    // console.log(hotelList);
-                    res.render("rooms", {
-                        title: "Look for Rooms",
-                        user: req.user,
-                        hotel:hotels,
-                        city:city
-                    });
-                }
-            });
+            res.render("rooms", {
+                title: "Look for Rooms",
+                user: req.user,
+                hotel:hotels,
+                city:city
+            });;
         }
     });
 });
@@ -122,7 +112,7 @@ app.get("/hotel_details", function(req, res) {
     res.render("hotel_details", {
         title: "Hotel Room Details",
         user: req.user,
-        details:details[0],
+        details:details[0]
     });
 
 });
@@ -136,7 +126,7 @@ app.get("/blogs", function(req, res) {
 
 app.get("/dashboard", ensureAuthenticated, function(req, res) {
     res.render("dashboard", {
-        title: "Register Yourself",
+        title: req.user.name,
         user: req.user
     });
 });
@@ -171,10 +161,11 @@ app.get("/hotel", function(req, res) {
     });
 });
 
-app.get("/book_now", function(req, res) {
+app.get("/book_now", ensureAuthenticated, function(req, res) {
     res.render("book_now",{
         title:"Book this Room",
-        user: req.user
+        user: req.user,
+        details:details[0]
     });
 });
 
@@ -263,32 +254,26 @@ app.post('/hotel', function(req, res) {
     const hotel = new Hotel({
         description: req.body.description,
         name: req.body.name,
-        locations: req.body.locations
+        locations: req.body.locations,
+        sdeluxe: req.body.sdeluxe,
+        deluxe: req.body.deluxe,
+        executive: req.body.executive
     });
     hotel.save();
-    const startDate=req.body.startDate;
-    const endDate=req.body.endDate;
-    var dates=function(s,e){
-        for(var a=[],d=new Date(s);d<=e;d.setDate(d.getDate()+1))
-        {
-            a.push(new Date(d));
-        }
-        return a;
-    };
-    var s=dates(new Date(startDate),new Date(endDate));
-    const availability = new Availability({
-        _id:hotel._id,
-        dates: datesList
+    const booking = new Booking({
+        roomId: hotel._id,
+        checkIn: "",
+        checkOut: "",
+        roomtype: ""
     });
-    console.log(availability.dates);
-    availability.save();
+    booking.save();
     res.redirect("/rooms");
 });
 
-app.post("/check",function(req, res){
+app.post("/searchHotels", function(req, res){
     city=req.body.city;
-    const startDate=req.body.startDate;
-    const endDate=req.body.endDate;
+    const checkIn=req.body.checkIn;
+    const checkOut=req.body.checkOut;
     var dates=function(s,e){
         for(var a=[],d=new Date(s);d<=e;d.setDate(d.getDate()+1))
         {
@@ -296,8 +281,7 @@ app.post("/check",function(req, res){
         }
         return a;
     };
-    dateList=dates(new Date(startDate),new Date(endDate));
-    // console.log(dateList);
+    dateList=dates(new Date(checkIn),new Date(checkOut));
     res.redirect("/rooms");
 });
 
@@ -316,25 +300,70 @@ app.post("/hotel_details",function(req, res){
     });
 });
 
-app.post("/book", function(req, res){
+app.post("/checkAvailability", ensureAuthenticated, function(req, res) {
     const roomtype=req.body.roomtype;
-    console.log(roomtype);
-    res.redirect("/book_now");
-});
-
-app.post("/book", function(req, res) {
-    Availability.find({}, function(err,doc){
+    const hotelId=req.body.hotelId;
+    Booking.find({_id:hotelId},function(err,doc){
         if(err)
         {
-            res.redirect("/");
+            console.log(err);
         }
         else
         {
-            console.log(doc);
+            // console.log(doc);
+            console.log(req.user.name," is trying to book a ",roomtype," room for dates :",dateList);
             res.redirect("/book_now");
         }
     });
 });
+
+app.post("/book", function(req, res) {
+    const roomId=req.body.roomId;
+    var today = new Date();
+    Booking.findOne({_id:roomId},function(err, room){
+        if(err)
+        {
+            console.log(err);
+        }
+        console.log(today);
+        if(room.checkOut!=null && (room.checkOut.getDate()<=today.getDate())&&(room.checkOut.getMonth()==today.getMonth()))
+        {
+            room.checkIn="";
+            room.checkOut="";
+        }
+        var l=dateList.length;
+        function avail(day,mon)
+        {
+            var stat=false;
+            for(var i=0;i<l-1;i++)
+            {
+                if(dateList[i].getDate()==day&&dateList[i].getMonth()==mon)
+                    stat=true;
+            }
+            return stat;
+        }
+        if((room.checkIn==null) || !avail(room.checkIn.getDate(),room.checkIn.getMonth()))
+        {
+            Booking.updateOne({_id:roomId},{ $set: { checkIn: dateList[0] ,checkOut: dateList[l-1]}},  function(err,doc){
+                if(err)
+                {
+                    console.log(err);
+                }
+                else
+                {
+                    console.log("Room Booked",doc);
+                    res.redirect("/dashboard");
+                }
+            });
+        }
+        else
+        {
+            console.log("Room Already Booked for this date!");
+            res.redirect("/");
+        }
+    });
+});
+
 
 //-------------------------listen at port 3000-------------------------
 app.listen(3000, function() {
