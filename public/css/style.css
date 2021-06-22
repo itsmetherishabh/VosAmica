@@ -23,45 +23,35 @@ a:hover
     text-decoration: none;
 }
 
-@keyframes textanimation {
-    0% {
-        letter-spacing: 1px;
-    }
-    50% {
-        letter-spacing: 20px;
-    }
-    100% {
-        letter-spacing: 1px;
-    }
-}
 
-.search-box {
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .brand-body {
     height: 95%;
-    display: flex;
     border: 1px solid;
-    /* background-image: url("images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg"); */
+    /* background-image: url("images/one.jpg"); */
     background-size: 100% 100%;
-    /* animation: slider 20s linear infinite; */
+    animation: slider 20s linear infinite;
 }
 
 @keyframes slider {
     0% {
-        background-image: url("images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg");
+        background-image: url("images/two.jpg");
         background-size: 100% 100%;
     }
-    35% {
-        background-image: url("images/Luxury-tourism-1024x761.jpg");
+    20% {
+        background-image: url("images/one.jpg");
         background-size: 100% 100%;
     }
-    75% {
-        background-image: url("images/5ba68bcc319265e489663ff0f33c765f.jpg");
+    40% {
+        background-image: url("images/seven.jpg");
+        background-size: 100% 100%;
+    }
+    60% {
+        background-image: url("images/three.jpg");
+        background-size: 100% 100%;
+    }
+    100% {
+        background-image: url("images/six.jpg");
         background-size: 100% 100%;
     }
 }
