@@ -8,11 +8,11 @@
             <h1><i><%=details.name%></i></h1>
             <h1><%=details.locations%></h1>
             <h1><%=details.description%></h1>
-                <form action="/checkAvailability" method="post">
+                <form action="/book" method="post">
                     <input type="radio" value="Super Deluxe" name="roomtype">Super Deluxe
                     <input type="radio" value="Deluxe" name="roomtype">Deluxe
                     <input type="radio" value="Executive" name="roomtype">Executive
-                    <button type="submit" value=<%=details._id%> name="hotelId" class="btn btn-warning ">
+                    <button type="submit" class="btn btn-warning">
                         Check
                     </button>
                 </form>

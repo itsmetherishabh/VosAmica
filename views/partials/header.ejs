@@ -43,24 +43,24 @@
                     <button type="button" class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                    <div class="collapse navbar-collapse well" id="navbarTogglerDemo02">
-                        <ul class="navbar-nav m-auto">
-                            <li class="nav-item mr-2">
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
                                 <a href="/" class="nav-link">
                                     <h4 class="p-2"><i class="fa fa-fw fa-home"></i> Home</h4>
                                 </a>
                             </li>
-                            <li class="nav-item mr-4">
+                            <li class="nav-item">
                                 <a href="/rooms" class="nav-link">
                                     <h4 class="p-2"><i class="fas fa-door-open"></i> Rooms</h4>
                                 </a>
                             </li>
-                            <li class="nav-item mr-4">
+                            <li class="nav-item">
                                 <a href="/blogs" class="nav-link">
                                     <h4 class="p-2"><i class="fas fa-blog"></i> Blogs</h4>
                                 </a>
                             </li>
-                            <li class="nav-item mr-4">
+                            <li class="nav-item">
                                 <a href="/about-us" class="nav-link">
                                     <h4 class="p-2"><i class="fas fa-address-card"></i> About Us</h4>
                                 </a>
@@ -72,7 +72,7 @@
                                 </a>
                             </li>
                             <%}else{%>
-                            <li class="nav-item mr-4">
+                            <li class="nav-item mr-2">
                                 <a href="/dashboard" class="nav-link">
                                     <h4 class="p-2"><i class="fa fa-fw fa-user"></i><%=user.name%></h4>
                                 </a>
@@ -83,7 +83,7 @@
                                     <div class="form-outline ml-auto">
                                         <input type="search" id="search-focus" class="form-control" placeholder="Search..." autocomplete="on" />
                                     </div>
-                                    <button type="button" class="btn btn-success btn-md mr-auto">
+                                    <button type="submit" class="btn btn-success btn-md mr-auto">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </form>

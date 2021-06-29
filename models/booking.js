@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
-    _id:String,
+    roomId:String,
     checkIn:Date,
     checkOut:Date,
-    roomtype:String
+    roomtype:String,
+    guestId:String,
+    guestName:String
 });
 
 const Booking = new mongoose.model("Booking", bookingSchema);

@@ -20,12 +20,24 @@
           <label for="location">Location</label>
           <input type="text" class="form-control" id="location" name="locations" placeholder="Enter the location" required="true">
         </div>
-        <input type="date" name="startDate" class="btn btn-info btn-lg dateStrat" required="true">
-        <input type="date" name="endDate" class="btn btn-info btn-lg dateEnd" required="true">
+
+        <div class="form-group">
+          <label for="capacity">Please fill capacity</label><br/>
+          <label for="sdeluxe">Super Deluxe</label>
+          <input type="number" id="sdeluxe" name="sdeluxe" required="true"/><br/>
+          <label for="deluxe">Deluxe</label>
+          <input type="number" id="deluxe" name="deluxe" required="true"/><br/>
+          <label for="executive">Executive</label>
+          <input type="number" id="executive" name="executive" required="true"/>
+        </div>
+
+        <div class="form-group">
+          <label for="images">Upload a picture</label><br/>
+          <input type="file" class="btn btn-sm btn-primary" id="images" name="images" placeholder="Upload a picture of your hotel">
+        </div>
                     
 
       <button type="submit" class="btn btn-warning" name="submit">Submit</button>
-      <p>already registered? <a href="/login">LOG IN</a>
   </form>
   </div>
 </div>
