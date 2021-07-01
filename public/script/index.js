@@ -73,7 +73,7 @@ $(document).ready(function(){
 
 });
 
-// MODAL
+// MODAL ----------------------------------------------
 
 var modal1 = document.getElementById("myModal1");
 var modal2 = document.getElementById("myModal2");
@@ -110,4 +110,5 @@ window.onclick = function(event) {
     modal2.style.display = "none";
   }
 }
+
 
