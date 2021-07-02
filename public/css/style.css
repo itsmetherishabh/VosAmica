@@ -11,11 +11,13 @@ body {
 }
 .nav-link > h4 {
     margin: 0;
+    font-size:1.5rem;
 }
 
 .nav-link > h4:hover {
     border-radius:15px;
-    background-color:rgba(89, 89, 129, 0.5);
+    background-color:rgba(42, 42, 80, 0.4);
+    color: rgb(245, 245, 245);
 }
 
 a
@@ -41,7 +43,7 @@ a:hover
     border-top: 1px solid;
     background-size: 100% 100%;
     animation-name: slider;
-    animation-duration: 20s;
+    animation-duration: 24s;
     animation-iteration-count: infinite;
 }
 
@@ -68,6 +70,12 @@ a:hover
 @media only screen and (max-width: 1000px) {
     .brand-body {
         height: 60%;
+    }
+}
+@media only screen and (max-width: 1150px) {
+    .nav-link > h4 {
+        margin: 0;
+        font-size:1rem;
     }
 }
 

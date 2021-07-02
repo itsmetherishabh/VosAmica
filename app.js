@@ -58,7 +58,8 @@ mongoose.set("useCreateIndex", true);
 
 const User = require('./models/User');
 const Hotel = require('./models/Hotel');
-const Booking = require('./models/booking');
+const Booking = require('./models/Booking');
+const Connect = require('./models/Connect');
 
 var Storage = multer.diskStorage({
     destination: "./public/profilePic",
@@ -125,9 +126,12 @@ app.get("/blogs", function(req, res) {
 });
 
 app.get("/dashboard", ensureAuthenticated, function(req, res) {
-    res.render("dashboard", {
-        title: req.user.name,
-        user: req.user
+    Connect.find({email: req.user.email}, function(err,queries){
+        res.render("dashboard", {
+            title: req.user.name,
+            user: req.user,
+            queries:queries
+        });
     });
 });
 
@@ -250,6 +254,36 @@ app.post('/login', function(req, res, next) {
     })(req, res, next);
 });
 
+app.post("/search", function(req, res) {
+    const sElement=req.body.searchElement;
+    Hotel.find({name: sElement},function(err,hotels){
+        if(hotels.length==0){
+            city = req.body.searchElement;
+        }
+        else{
+            city=hotels[0].locations;
+        }
+        res.redirect("/rooms");
+    });
+});
+
+app.post("/connect", function(req, res) {
+    const email = req.body.usermail;
+    const message = req.body.message;
+    console.log(email,"is trying to connect is reference : ",message);
+    const connect = new Connect({
+        email: email,
+        message: message
+    });
+    connect.save();
+    if(req.user){
+        res.redirect("/dashboard");
+    }
+    else{
+        res.redirect("/");
+    }
+});
+
 app.post('/hotel', function(req, res) {
     const hotel = new Hotel({
         description: req.body.description,
@@ -260,13 +294,13 @@ app.post('/hotel', function(req, res) {
         executive: req.body.executive
     });
     hotel.save();
-    const booking = new Booking({
-        roomId: hotel._id,
-        checkIn: "",
-        checkOut: "",
-        roomtype: ""
-    });
-    booking.save();
+    // const booking = new Booking({
+    //     roomId: hotel._id,
+    //     checkIn: "",
+    //     checkOut: "",
+    //     roomtype: ""
+    // });
+    // booking.save();
     res.redirect("/rooms");
 });
 
@@ -326,9 +360,18 @@ app.post("/checkAvailability", ensureAuthenticated, function(req, res) {
 app.post("/book", function(req, res) {
     const roomtype=req.body.roomtype;
     var l=dateList.length;
-    Booking.find({roomId:details[0]._id,roomtype:roomtype,checkIn:dateList[0]},function(err,rooms){
-        if(rooms.length==0){
-            console.log("This room is Available !");
+    let flag;
+    for(var i=0;i<l-1;i++){
+        Booking.find({roomId:details[0]._id,roomtype:roomtype,checkIn:dateList[i]},function(err,rooms){
+            if(rooms.length>=details[0].sdeluxe){
+                flag=0;
+            }
+            console.log(flag," len ",rooms.length);
+        });
+    }
+    console.log(flag);
+    if(flag!=0){
+        console.log("This room is Available !");
             const booking = new Booking({
                 roomId: details[0]._id,
                 checkIn: dateList[0],
@@ -338,62 +381,78 @@ app.post("/book", function(req, res) {
             booking.save();
             console.log("Your Room is booked !");
             dateList=[];
+    }
+    else{
+        console.log("All rooms are booked  for this date!");
+    }
+    // Booking.find({roomId:details[0]._id,roomtype:roomtype,checkIn:dateList[0]},function(err,rooms){
+    //     if(rooms.length==0){
+    //         console.log("This room is Available !");
+    //         const booking = new Booking({
+    //             roomId: details[0]._id,
+    //             checkIn: dateList[0],
+    //             checkOut: dateList[l-1],
+    //             roomtype: roomtype
+    //         });
+    //         booking.save();
+    //         console.log("Your Room is booked !");
+    //         dateList=[];
             
-        }
-        else{
-            if(roomtype=="Super Deluxe"){
-                if(rooms.length==details[0].sdeluxe){
-                    console.log("All rooms are booked  for this date!");
-                }
-                else{
-                    console.log("This room is Available !");
-                    const booking = new Booking({
-                        roomId: details[0]._id,
-                        checkIn: dateList[0],
-                        checkOut: dateList[l-1],
-                        roomtype: roomtype
-                    });
-                    booking.save();
-                    console.log("Your Room is booked !");
-                    dateList=[];
-                }
-            }
-            else if(roomtype=="Deluxe"){
-                if(rooms.length==details[0].deluxe){
-                    console.log("All rooms are booked  for this date!");
-                }
-                else{
-                    console.log("This room is Available !");
-                    const booking = new Booking({
-                        roomId: details[0]._id,
-                        checkIn: dateList[0],
-                        checkOut: dateList[l-1],
-                        roomtype: roomtype
-                    });
-                    booking.save();
-                    console.log("Your Room is booked !");
-                    dateList=[];
-                }
-            }
-            else if(roomtype=="Executive"){
-                if(rooms.length==details[0].executive){
-                    console.log("All rooms are booked  for this date!");
-                }
-                else{
-                    console.log("This room is Available !");
-                    const booking = new Booking({
-                        roomId: details[0]._id,
-                        checkIn: dateList[0],
-                        checkOut: dateList[l-1],
-                        roomtype: roomtype
-                    });
-                    booking.save();
-                    console.log("Your Room is booked !");
-                    dateList=[];
-                }
-            }
-        }
-    });
+    //     }
+    //     else{
+    //         if(roomtype=="Super Deluxe"){
+    //             if(rooms.length==details[0].sdeluxe){
+    //                 console.log("All rooms are booked  for this date!");
+    //             }
+    //             else{
+    //                 console.log("This room is Available !");
+    //                 const booking = new Booking({
+    //                     roomId: details[0]._id,
+    //                     checkIn: dateList[0],
+    //                     checkOut: dateList[l-1],
+    //                     roomtype: roomtype
+    //                 });
+    //                 booking.save();
+    //                 console.log("Your Room is booked !");
+    //                 dateList=[];
+    //             }
+    //         }
+    //         else if(roomtype=="Deluxe"){
+    //             if(rooms.length==details[0].deluxe){
+    //                 console.log("All rooms are booked  for this date!");
+    //             }
+    //             else{
+    //                 console.log("This room is Available !");
+    //                 const booking = new Booking({
+    //                     roomId: details[0]._id,
+    //                     checkIn: dateList[0],
+    //                     checkOut: dateList[l-1],
+    //                     roomtype: roomtype
+    //                 });
+    //                 booking.save();
+    //                 console.log("Your Room is booked !");
+    //                 dateList=[];
+    //             }
+    //         }
+    //         else if(roomtype=="Executive"){
+    //             if(rooms.length==details[0].executive){
+    //                 console.log("All rooms are booked  for this date!");
+    //             }
+    //             else{
+    //                 console.log("This room is Available !");
+    //                 const booking = new Booking({
+    //                     roomId: details[0]._id,
+    //                     checkIn: dateList[0],
+    //                     checkOut: dateList[l-1],
+    //                     roomtype: roomtype
+    //                 });
+    //                 booking.save();
+    //                 console.log("Your Room is booked !");
+    //                 dateList=[];
+    //             }
+    //         }
+    //     }
+    // });
     res.redirect("/rooms");
 });
 
