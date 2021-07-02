@@ -1,51 +1,52 @@
-<%- include('partials/header') %>
-
-<div class="row">
-  <div class="col-lg-5 col-md-6 col-10 mt-4" style="margin:auto; color:rgb(5, 5, 5);padding:2rem  ; background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;"  >
-    <%if(success_msg!="") {%>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%=success_msg%>
-        <button type="button" class="btn btn-success close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <%}%>
-
-    <%if(error_msg!="") {%>
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <%=error_msg%>
-        <button type="button" class="btn btn-warning close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <%}%>
-
-    <%if(error!="") {%>
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <%=error%>
-        <button type="button" class="btn btn-danger close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <%}%>
-    <form method="post" action="/login" >
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="enter your email" required="true">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+<div class="container-fluid" style=" border-top: 1px solid;background-image: url('css/images/ten.jpg');background-repeat: no-repeat;background-size: cover;">
+  <%- include('partials/header') %>
+  <div class="row">
+    <div class="col-lg-5 col-md-6 col-10 mt-4" style="margin:auto; color:#fff;padding:2rem; background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;">
+      <h3>LOG IN TO YOUR ACCOUNT</h3>
+      <%if(success_msg!="") {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%=success_msg%>
+          <button type="button" class="btn btn-success close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="form-group">
-            <label for="password">password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required="true">
-            <small class="form-text text-muted">your password contains at least of 8 charcters</small>
+      <%}%>
+  
+      <%if(error_msg!="") {%>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%=error_msg%>
+          <button type="button" class="btn btn-warning close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <%}%>
+  
+      <%if(error!="") {%>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%=error%>
+          <button type="button" class="btn btn-danger close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <%}%>
+      <form method="post" action="/login" >
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="enter your email" required="true">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
-       
-        <button type="submit" class="btn btn-warning">Submit</button>
-        <p>don't have an Account? <a href="/register">SIGN UP</a>
-        <br>forgot password</p>
-      </form> 
+          <div class="form-group">
+              <label for="password">password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required="true">
+              <small class="form-text text-muted">your password contains at least of 8 charcters</small>
+            </div>
+         
+          <button type="submit" class="btn btn-warning mb-2">Submit</button>
+          <p>don't have an Account? 
+          <br><a href="/register">SIGN UP</a>
+          <br>forgot password?</p>
+        </form> 
+    </div>
   </div>
 </div>
-            
-
 <%- include('partials/footer') %>
