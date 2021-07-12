@@ -1,6 +1,25 @@
-<div class="container-fluid" style="background-image: url('css/images/twelve.jpg'); border-top: 1px solid #f7797d;background-size: cover;background-repeat: no-repeat;">
+<div style="background-image: linear-gradient(#4ECDC4, #556270);color:white; border-top: 1px solid #f7797d;background-size: 100% 100%;background-repeat: no-repeat;">
 <%- include('partials/header') %>
 <div class="container-fluid">
+    <%if(status){%>
+        <!-- Position it -->
+        <div style="position: absolute; top: 0; right: 0;">
+            <!-- Then put toasts within -->
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header px-4">
+                <!-- <img src="..." class="rounded mr-2" alt="..."> -->
+                <strong class="mr-auto">Booking status of your room!</strong>
+                <!-- <small class="text-muted">just now</small> -->
+                <button type="button" class="btn btn-info px-1 ml-1 mb-1 close" data-dismiss="toast" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="toast-body" style="color: green;">
+                  <!-- Your Room is booked --><%=status%>
+              </div>
+            </div>
+        </div>
+    <%}%>
     <div class="row">
         <div class="col-lg-3 col-md-4 p-5 pr-0">
             <img src="css/images/user.png" alt="profile picture" style="width:7rem;" />
@@ -11,47 +30,42 @@
             <!-- The Modal -->
             <div id="myModal1" class="modal">
             <!-- Modal content -->
-                <div class="modal-content">
+                <div class="col-lg-5 col-md-6 col-10 mt-4 modal-content" style="margin:auto; color:rgb(32, 30, 30);padding:2rem  ; background-color: rgba(178, 202, 243, 0.9) ; border-radius: 0.5rem; margin-bottom: 2rem;">
                     <span class="close">&times;</span>
-                    <div class="col-lg-5 col-md-6 col-10 mt-4" style="margin:auto; color:rgb(5, 5, 5);padding:2rem  ; background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;">
-                        <form method="post" action="/editProfile" >
-                            <div class="form-group">
-                              <label for="name">Name</label>
-                              <input type="text" class="form-control" id="name" name="name" placeholder="Update your name" required="true" value=<%=user.name%>>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Update your phone number" required="true" value=<%=user.phone%>>
-                            </div>
-                            <div class="form-group">
-                                <label for="photo">Photo</label>
-                                <input type="file" class="btn form-control" id="photo" name="photo" placeholder="Update your photo" required="true">
-                              </div>
-                            <button type="submit" class="btn btn-warning">Submit</button>
-                        </form>
-                    </div>
-                    
+                    <form method="post" action="/editProfile" >
+                        <div class="form-group">
+                          <label for="name">Name</label>
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Update your name" required="true" value="<%=user.name%>"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Update your phone number" required="true" value=<%=user.phone%>>
+                        </div>
+                        <div class="form-group">
+                            <label for="photo">Photo</label>
+                            <input type="file" class="btn form-control" id="photo" name="photo" placeholder="Update your photo">
+                          </div>
+                        <button type="submit" class="btn btn-warning">Submit</button>
+                    </form>
                 </div>
             </div>
 
             <!-- The Modal -->
             <div id="myModal2" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content">
+                <div class="col-lg-5 col-md-6 col-10 mt-4 modal-content" style="color:rgb(32, 30, 30)); background-color: rgba(178, 202, 243, 0.9) ; border-radius: 0.5rem; margin-bottom: 2rem;" >
                     <span class="close">&times;</span>
-                    <div class="col-9 p-5 m-auto" style="color:rgb(5, 5, 5); background-color: rgba(2, 12, 29 ,0.7) ; border-radius: 0.5rem; margin-bottom: 2rem;" >
-                        <form method="post" action="/uploadPhoto" >
-                            <div class="form-group">
-                              <label for="photo">Photo</label>
-                              <input type="file" class="btn btn-light ml-5" id="photo" name="photo" placeholder="enter your photo" required="true">
-                            </div>
-                            <div class="form-group">
-                                <label for="caption">Caption</label>
-                                <input type="text" class="form-control" id="caption" name="caption" placeholder="Enter caption" required="true">
-                            </div>
-                            <button type="submit" class="btn btn-warning">Submit</button>
-                        </form> 
-                    </div>
+                    <form method="post" action="/uploadPhoto" >
+                        <div class="form-group">
+                          <label for="photo">Photo</label>
+                          <input type="file" class="btn form-control" id="photo" name="photo" placeholder="enter your photo" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="caption">Caption</label>
+                            <input type="text" class="form-control" id="caption" name="caption" placeholder="Enter caption" required="true">
+                        </div>
+                        <button type="submit" class="btn btn-warning">Submit</button>
+                    </form> 
                 </div>
             </div>
             
@@ -73,7 +87,7 @@
             <div class="row m-auto p-0" style="overflow:scroll;height: 500px;">
                 <%for(var i=0;i<8;i++){%>
                 <div class="item col-lg-4 col-md-4 col-6 p-0">
-                    <a href="css\images\Luxury-tourism-1024x761.jpg" class="fancybox" data-fancybox="gallery1">
+                    <a href="css\images\three.jpg" class="fancybox" data-fancybox="gallery1">
                         <img src="css\images\three.jpg" alt="public image" width="100%">
                     </a>
                 </div>
@@ -81,14 +95,23 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-2">
-            <div style="height:15rem;">
-                <h3>Current Booking</h3>
+            <div style="height:15rem;" class="mt-3">
+                <h3>Your Current Booking</h3>
+                <%if (booking.length==0){%>
+                    <p>No Bookings to display !</p>
+                <%}else{%>
+                    <ul>
+                        <%booking.forEach(function(ls){%>
+                            <li>Your <u>&nbsp;<%=ls.roomtype%> room&nbsp;</u> in <%=ls.hotel%>  is booked from <%=ls.checkIn.getDate()%>/<%=ls.checkIn.getMonth()+1%>/<%=ls.checkIn.getFullYear()%> to <%=ls.checkOut.getDate()%>/<%=ls.checkOut.getMonth()+1%>/<%=ls.checkOut.getFullYear()%></li>
+                        <%})%>
+                    </ul>
+                <%}%>
             </div>
-            <form action="/rooms">
+            <form action="/rooms" class="my-4">
                 <button type="submit" class="btn btn-warning btn-md">Check Rooms</button>
             </form>
-            <div style="height:15rem;" class="mt-2">
-                <h3>My Queries and Comments</h3>
+            <div style="height:15rem;">
+                <h3>Your Queries and Comments</h3>
                 <%if (queries.length==0){%>
                     <p>No queries to display !</p>
                 <%}else{%>

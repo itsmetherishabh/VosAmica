@@ -73,7 +73,7 @@ var profilePic = multer({
 }).single('file');
 
 var city="Delhi";
-var details;
+var details,stat;
 var dateList = [];
 //-------------------------get requests-------------------------
 
@@ -97,7 +97,7 @@ app.get("/rooms", function(req, res) {
                 user: req.user,
                 hotel:hotels,
                 city:city
-            });;
+            });
         }
     });
 });
@@ -127,11 +127,20 @@ app.get("/blogs", function(req, res) {
 
 app.get("/dashboard", ensureAuthenticated, function(req, res) {
     Connect.find({email: req.user.email}, function(err,queries){
-        res.render("dashboard", {
-            title: req.user.name,
-            user: req.user,
-            queries:queries
-        });
+        if(err){
+            console.log(err);
+        }
+        else{
+            Booking.find({guestId: req.user.email}, function(err,bookings){
+                res.render("dashboard", {
+                    title: req.user.name,
+                    user: req.user,
+                    queries:queries,
+                    status:stat,
+                    booking:bookings
+                });
+            });
+        }
     });
 });
 
@@ -210,7 +219,7 @@ app.post("/register", [
                         user: user
                     });
                 } else {
-                    var today = new Date();
+                    let today = new Date();
                     var day = dateFormat(today, "dddd, mmmm dS, yyyy, h:MM:ss TT");
                     const user1 = new User({
                         name: req.body.name,
@@ -316,6 +325,7 @@ app.post("/searchHotels", function(req, res){
         return a;
     };
     dateList=dates(new Date(checkIn),new Date(checkOut));
+    console.log(dateList);
     res.redirect("/rooms");
 });
 
@@ -357,103 +367,72 @@ app.post("/checkAvailability", ensureAuthenticated, function(req, res) {
     });
 });
 
-app.post("/book", function(req, res) {
+app.post("/book", ensureAuthenticated, async function(req, res) {
     const roomtype=req.body.roomtype;
-    var l=dateList.length;
+    let l= dateList.length;
+    let today=new Date();
     let flag;
+    Booking.deleteMany({checkOut:today},function(err){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Deleted Bookings");
+        }
+    });
     for(var i=0;i<l-1;i++){
-        Booking.find({roomId:details[0]._id,roomtype:roomtype,checkIn:dateList[i]},function(err,rooms){
-            if(rooms.length>=details[0].sdeluxe){
-                flag=0;
+        await Booking.find({roomId:details[0]._id,roomtype:roomtype,checkIn:dateList[i]},function(err,rooms){
+            if(roomtype=="Super Deluxe"){
+                if(rooms.length>=details[0].sdeluxe){
+                    flag=0;
+                }
             }
-            console.log(flag," len ",rooms.length);
-        });
+            else if(roomtype=="Deluxe"){
+                if(rooms.length>=details[0].deluxe){
+                    flag=0;
+                }
+            }
+            else if(roomtype=="Executive"){
+                if(rooms.length>=details[0].executive){
+                    flag=0;
+                }
+            }
+        }); 
     }
-    console.log(flag);
+    // console.log(flag);
     if(flag!=0){
-        console.log("This room is Available !");
+        // console.log("This room is Available !");
             const booking = new Booking({
+                hotel:details[0].name,
                 roomId: details[0]._id,
                 checkIn: dateList[0],
                 checkOut: dateList[l-1],
-                roomtype: roomtype
+                roomtype: roomtype,
+                guestId: req.user.email,
+                guestName:req.user.name
             });
-            booking.save();
-            console.log("Your Room is booked !");
+            await booking.save();
+            // console.log("Your Room is booked !");
+            stat="Your Room is booked !";
             dateList=[];
     }
     else{
-        console.log("All rooms are booked  for this date!");
+        // console.log("All rooms are booked  for this date!");
+        stat="Sorry! All rooms are booked  for this date!";
+        dateList=[];
     }
-    // Booking.find({roomId:details[0]._id,roomtype:roomtype,checkIn:dateList[0]},function(err,rooms){
-    //     if(rooms.length==0){
-    //         console.log("This room is Available !");
-    //         const booking = new Booking({
-    //             roomId: details[0]._id,
-    //             checkIn: dateList[0],
-    //             checkOut: dateList[l-1],
-    //             roomtype: roomtype
-    //         });
-    //         booking.save();
-    //         console.log("Your Room is booked !");
-    //         dateList=[];
-            
-    //     }
-    //     else{
-    //         if(roomtype=="Super Deluxe"){
-    //             if(rooms.length==details[0].sdeluxe){
-    //                 console.log("All rooms are booked  for this date!");
-    //             }
-    //             else{
-    //                 console.log("This room is Available !");
-    //                 const booking = new Booking({
-    //                     roomId: details[0]._id,
-    //                     checkIn: dateList[0],
-    //                     checkOut: dateList[l-1],
-    //                     roomtype: roomtype
-    //                 });
-    //                 booking.save();
-    //                 console.log("Your Room is booked !");
-    //                 dateList=[];
-    //             }
-    //         }
-    //         else if(roomtype=="Deluxe"){
-    //             if(rooms.length==details[0].deluxe){
-    //                 console.log("All rooms are booked  for this date!");
-    //             }
-    //             else{
-    //                 console.log("This room is Available !");
-    //                 const booking = new Booking({
-    //                     roomId: details[0]._id,
-    //                     checkIn: dateList[0],
-    //                     checkOut: dateList[l-1],
-    //                     roomtype: roomtype
-    //                 });
-    //                 booking.save();
-    //                 console.log("Your Room is booked !");
-    //                 dateList=[];
-    //             }
-    //         }
-    //         else if(roomtype=="Executive"){
-    //             if(rooms.length==details[0].executive){
-    //                 console.log("All rooms are booked  for this date!");
-    //             }
-    //             else{
-    //                 console.log("This room is Available !");
-    //                 const booking = new Booking({
-    //                     roomId: details[0]._id,
-    //                     checkIn: dateList[0],
-    //                     checkOut: dateList[l-1],
-    //                     roomtype: roomtype
-    //                 });
-    //                 booking.save();
-    //                 console.log("Your Room is booked !");
-    //                 dateList=[];
-    //             }
-    //         }
-    //     }
-    // });
-    res.redirect("/rooms");
+    res.redirect("/dashboard");
+});
+
+app.post("/editProfile", function(req, res){
+    let name = req.body.name;
+    let phone = req.body.phone;
+    User.updateOne({email:req.user.email},{ $set: { name: name, phone: phone}},function(err){
+        if(err){
+            console.log(err);
+        }
+    });
+    res.redirect('/dashboard');
 });
 
 

@@ -69,9 +69,13 @@ $(document).ready(function(){
 			  var maxDate = year + '-' + month + '-' + day;
         $('.dateStart').attr('min', maxDate);
         $('.dateEnd').attr('min', maxDate);
+           
+// Toast  --------------------------------------------
 
-
+        $('.toast').toast('show');
+        $('.toast').toast({delay:2000, animation:false});
 });
+
 
 // MODAL ----------------------------------------------
 
@@ -83,7 +87,7 @@ var btn1 = document.getElementById("myBtn1");
 var btn2 = document.getElementById("myBtn2");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("close");
 
 // When the user clicks the button, open the modal 
 btn1.onclick = function() {
@@ -94,10 +98,10 @@ btn2.onclick = function() {
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+span[0].onclick = function() {
   modal1.style.display = "none";
 }
-span.onclick = function() {
+span[1].onclick = function() {
   modal2.style.display = "none";
 }
 
@@ -110,5 +114,3 @@ window.onclick = function(event) {
     modal2.style.display = "none";
   }
 }
-
-

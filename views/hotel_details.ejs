@@ -1,21 +1,23 @@
-<%- include('partials/header') %>
-<div class="container">
-    <div class="row m-auto pt-3 pb-3">
-        <div class="item col-lg-6 col-md-6 col-12 p-0">
-            <img src="css/images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg" alt="hotel image" width="100%" height="100%">
-        </div>
-        <div class="col-lg-6 col-md-6 col-12">
-            <h1><i><%=details.name%></i></h1>
-            <h1><%=details.locations%></h1>
-            <h1><%=details.description%></h1>
-                <form action="/book" method="post">
-                    <input type="radio" value="Super Deluxe" name="roomtype">Super Deluxe
-                    <input type="radio" value="Deluxe" name="roomtype">Deluxe
-                    <input type="radio" value="Executive" name="roomtype">Executive
-                    <button type="submit" class="btn btn-warning">
-                        Check
-                    </button>
-                </form>
+<div style="background-image: linear-gradient(to right,#F8FFAE,#43C6AC, #68e2bd);color:white; border-top: 1px solid #f7797d;background-size: 100% 100%;background-repeat: no-repeat;">
+    <%- include('partials/header') %>
+    <div class="container">
+        <div class="row m-auto pt-3 pb-3">
+            <div class="item col-lg-6 col-md-6 col-12 p-0">
+                <img src="css/images/luxury-hotel-room-bedroom-furniture-set-wallpaper-preview.jpg" alt="hotel image" width="100%" >
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <h1><i><%=details.name%>, <%=details.locations%></i></h1>
+                <h1><%=details.description%></h1>
+                <strong>Select Room Type: </strong> 
+                    <form action="/book" method="post">
+                        <input type="radio" value="Super Deluxe" name="roomtype"> Super Deluxe <br/>
+                        <input type="radio" value="Deluxe" name="roomtype"> Deluxe <br/>
+                        <input type="radio" value="Executive" name="roomtype"> Executive <br/>
+                        <button type="submit" class="btn btn-warning">
+                            Book Now
+                        </button>
+                    </form>
+            </div>
         </div>
     </div>
 </div>

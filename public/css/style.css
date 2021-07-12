@@ -33,7 +33,7 @@ a:hover
 }
 
 .room-body{
-    border: 1px solid;
+    border: 1px solid brown;
     background-size: 100% 100%;
     background-image:url('images/nine.jpg') ;
 }
